@@ -10,4 +10,11 @@ AGENDA:
 	c) Update HomeController - connection part
 	d) Publish to Azure
 		update credentials from webapp.azcli
-		
+3. Modiy web app for redis backed application
+	b) update Team class
+	c) update SQL Server Express LocalDB connection - Web.config
+	d) Run Team Initializer from Global.asax
+	f) update _Layout to add Teams tab
+	g) update the TeamsController to read from the cache or the database
+	h) Update the Create, Edit, and Delete methods to work with the cache
+	i) Update caching methods to the Teams Index view
