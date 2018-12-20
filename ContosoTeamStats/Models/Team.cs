@@ -9,13 +9,13 @@ namespace ContosoTeamStats.Models
 {
     public class Team
     {
-        //TODO:uncomment
-        //public int ID { get; set; }
-        //public string Name { get; set; }
-        //public int Wins { get; set; }
-        //public int Losses { get; set; }
-        //public int Ties { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Wins { get; set; }
+        public int Losses { get; set; }
+        public int Ties { get; set; }
 
+        //TODO:uncomment
         //static public void PlayGames(IEnumerable<Team> teams)
         //{
         //    // Simple random generation of statistics.
@@ -30,16 +30,17 @@ namespace ContosoTeamStats.Models
         //}
     }
 
-    //TODO:uncomment
-    //public class TeamContext : DbContext
-    //{
-    //    public TeamContext()
-    //        : base("TeamContext")
-    //    {
-    //    }
+    public class TeamContext : DbContext
+    {
+        public TeamContext()
+            : base("TeamContext")
+        {
+        }
 
-    //    public DbSet<Team> Teams { get; set; }
-    //}
+        public DbSet<Team> Teams { get; set; }
+    }
+
+    //TODO:uncomment
 
     //public class TeamInitializer : CreateDatabaseIfNotExists<TeamContext>
     //{

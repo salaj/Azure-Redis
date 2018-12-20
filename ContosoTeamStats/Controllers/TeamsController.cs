@@ -16,173 +16,177 @@ namespace ContosoTeamStats.Controllers
 {
     public class TeamsController : Controller
     {
-        //TODO:uncomment
-        //private TeamContext db = new TeamContext();
+       private TeamContext db = new TeamContext();
 
-        //// GET: Teams
-        //public ActionResult Index(string actionType, string resultType)
-        //{
-        //    List<Team> teams = null;
+        // GET: Teams
+        public ActionResult Index(string actionType, string resultType)
+        {
+            List<Team> teams = new List<Team>();
 
-        //    switch (actionType)
-        //    {
-        //        case "playGames": // Play a new season of games.
-        //            PlayGames();
-        //            break;
+            //TODO:uncomment
+            //teams = null;
+            //    switch (actionType)
+            //    {
+            //        case "playGames": // Play a new season of games.
+            //            PlayGames();
+            //            break;
 
-        //        case "clearCache": // Clear the results from the cache.
-        //            ClearCachedTeams();
-        //            break;
+            //        case "clearCache": // Clear the results from the cache.
+            //            ClearCachedTeams();
+            //            break;
 
-        //        case "rebuildDB": // Rebuild the database with sample data.
-        //            RebuildDB();
-        //            break;
-        //    }
+            //        case "rebuildDB": // Rebuild the database with sample data.
+            //            RebuildDB();
+            //            break;
+            //    }
 
-        //    // Measure the time it takes to retrieve the results.
-        //    Stopwatch sw = Stopwatch.StartNew();
+            //    // Measure the time it takes to retrieve the results.
+            //    Stopwatch sw = Stopwatch.StartNew();
 
-        //    switch (resultType)
-        //    {
-        //        case "teamsSortedSet": // Retrieve teams from sorted set.
-        //            teams = GetFromSortedSet();
-        //            break;
+            //    switch (resultType)
+            //    {
+            //        case "teamsSortedSet": // Retrieve teams from sorted set.
+            //            teams = GetFromSortedSet();
+            //            break;
 
-        //        case "teamsSortedSetTop5": // Retrieve the top 5 teams from the sorted set.
-        //            teams = GetFromSortedSetTop5();
-        //            break;
+            //        case "teamsSortedSetTop5": // Retrieve the top 5 teams from the sorted set.
+            //            teams = GetFromSortedSetTop5();
+            //            break;
 
-        //        case "teamsList": // Retrieve teams from the cached List<Team>.
-        //            teams = GetFromList();
-        //            break;
+            //        case "teamsList": // Retrieve teams from the cached List<Team>.
+            //            teams = GetFromList();
+            //            break;
 
-        //        case "fromDB": // Retrieve results from the database.
-        //        default:
-        //            teams = GetFromDB();
-        //            break;
-        //    }
+            //        case "fromDB": // Retrieve results from the database.
+            //        default:
+            //            teams = GetFromDB();
+            //            break;
+            //    }
 
-        //    sw.Stop();
-        //    double ms = sw.ElapsedTicks / (Stopwatch.Frequency / (1000.0));
+            //    sw.Stop();
+            //    double ms = sw.ElapsedTicks / (Stopwatch.Frequency / (1000.0));
 
-        //    // Add the elapsed time of the operation to the ViewBag.msg.
-        //    ViewBag.msg += " MS: " + ms.ToString();
+            //    // Add the elapsed time of the operation to the ViewBag.msg.
+            //    ViewBag.msg += " MS: " + ms.ToString();
 
-        //    return View(teams);
-        //}
+            return View(teams);
+        }
 
-        //// GET: Teams/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Team team = db.Teams.Find(id);
-        //    if (team == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(team);
-        //}
+        // GET: Teams/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Team team = db.Teams.Find(id);
+            if (team == null)
+            {
+                return HttpNotFound();
+            }
+            return View(team);
+        }
 
-        //// GET: Teams/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: Teams/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-        //// POST: Teams/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "ID,Name,Wins,Losses,Ties")] Team team)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Teams.Add(team);
-        //        db.SaveChanges();
-        //        // When a team is added, the cache is out of date.
-        //        // Clear the cached teams.
-        //        ClearCachedTeams();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: Teams/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,Name,Wins,Losses,Ties")] Team team)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Teams.Add(team);
+                db.SaveChanges();
+                ////TODO: uncomment
+                //// When a team is added, the cache is out of date.
+                //// Clear the cached teams.
+                //ClearCachedTeams();
+                return RedirectToAction("Index");
+            }
 
-        //    return View(team);
-        //}
+            return View(team);
+        }
 
-        //// GET: Teams/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Team team = db.Teams.Find(id);
-        //    if (team == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(team);
-        //}
+        // GET: Teams/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Team team = db.Teams.Find(id);
+            if (team == null)
+            {
+                return HttpNotFound();
+            }
+            return View(team);
+        }
 
-        //// POST: Teams/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "ID,Name,Wins,Losses,Ties")] Team team)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(team).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        // When a team is edited, the cache is out of date.
-        //        // Clear the cached teams.
-        //        ClearCachedTeams();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(team);
-        //}
+        // POST: Teams/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID,Name,Wins,Losses,Ties")] Team team)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(team).State = EntityState.Modified;
+                db.SaveChanges();
+                //TODO: uncomment
+                //// When a team is edited, the cache is out of date.
+                //// Clear the cached teams.
+                //ClearCachedTeams();
+                return RedirectToAction("Index");
+            }
+            return View(team);
+        }
 
-        //// GET: Teams/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Team team = db.Teams.Find(id);
-        //    if (team == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(team);
-        //}
+        // GET: Teams/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Team team = db.Teams.Find(id);
+            if (team == null)
+            {
+                return HttpNotFound();
+            }
+            return View(team);
+        }
 
-        //// POST: Teams/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Team team = db.Teams.Find(id);
-        //    db.Teams.Remove(team);
-        //    db.SaveChanges();
-        //    // When a team is edited, the cache is out of date.
-        //    // Clear the cached teams.
-        //    ClearCachedTeams();
-        //    return RedirectToAction("Index");
-        //}
+        // POST: Teams/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Team team = db.Teams.Find(id);
+            db.Teams.Remove(team);
+            db.SaveChanges();
+            //TODO: uncomment
+            //// When a team is edited, the cache is out of date.
+            //// Clear the cached teams.
+            //ClearCachedTeams();
+            return RedirectToAction("Index");
+        }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
         //// Redis Connection string info
         //private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
