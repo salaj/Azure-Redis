@@ -1,0 +1,35 @@
+# ABOUT REDIS https://azure.microsoft.com/pl-pl/services/cache/
+
+# DOCUMENTATION https://docs.microsoft.com/en-us/cli/azure/redis?view=azure-cli-latest
+# PRICING https://azure.microsoft.com/en-us/pricing/details/cache/
+
+
+$resourceGroup = "jksa-redis"
+$redisName = "jksa1"
+$redisVMSize = "C0"
+$redisLocation = "westeurope"
+$localPathToSecrets = "C:\AppSecrets\CacheSecrets.config"
+$webAppSettingCacheConnectionKey="CacheConnection"
+
+az group create --resource-group $resourceGroup
+
+az redis create --name $redisName --resource-group $resourceGroup --sku Basic --vm-size $redisVMSize --location $redisLocation
+
+$redisId = az redis list --query "[?name=='$redisName'].id | [0]"
+
+$accessKey = az redis list-keys --resource-group $resourceGroup --ids $redisId --query "primaryKey"
+
+$accessKey = $accessKey.Replace("`"","")
+
+$accesSecret = "$redisName.redis.cache.windows.net,abortConnect=false,ssl=true,password=$accessKey"
+
+$appSettings="
+<appSettings> `r`n
+    <add key=""$webAppSettingCacheConnectionKey"" value=""$accesSecret""/> `r`n
+</appSettings>
+"
+
+New-Item -Path $localPathToSecrets -ItemType File -Force
+
+$appSettings >> $localPathToSecrets
+

@@ -1,0 +1,10 @@
+#THIS SCRIPT ASSUMES redis.azcli has been run before
+
+$webAppName="MyRedisBasedApp"
+
+$webResourceGroup=az webapp list --query "[?name=='$webAppName'].resourceGroup | [0]"
+
+az webapp config appsettings list --name $webAppName --resource-group $webResourceGroup
+
+az webapp config appsettings set --name $webAppName --resource-group $webResourceGroup `
+--settings  "$webAppSettingCacheConnectionKey=$accesSecret"
