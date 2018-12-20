@@ -9,68 +9,70 @@ namespace ContosoTeamStats.Models
 {
     public class Team
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public int Wins { get; set; }
-        public int Losses { get; set; }
-        public int Ties { get; set; }
+        //TODO:uncomment
+        //public int ID { get; set; }
+        //public string Name { get; set; }
+        //public int Wins { get; set; }
+        //public int Losses { get; set; }
+        //public int Ties { get; set; }
 
-        static public void PlayGames(IEnumerable<Team> teams)
-        {
-            // Simple random generation of statistics.
-            Random r = new Random();
+        //static public void PlayGames(IEnumerable<Team> teams)
+        //{
+        //    // Simple random generation of statistics.
+        //    Random r = new Random();
 
-            foreach (var t in teams)
-            {
-                t.Wins = r.Next(33);
-                t.Losses = r.Next(33);
-                t.Ties = r.Next(0, 5);
-            }
-        }
+        //    foreach (var t in teams)
+        //    {
+        //        t.Wins = r.Next(33);
+        //        t.Losses = r.Next(33);
+        //        t.Ties = r.Next(0, 5);
+        //    }
+        //}
     }
 
-    public class TeamContext : DbContext
-    {
-        public TeamContext()
-            : base("TeamContext")
-        {
-        }
+    //TODO:uncomment
+    //public class TeamContext : DbContext
+    //{
+    //    public TeamContext()
+    //        : base("TeamContext")
+    //    {
+    //    }
 
-        public DbSet<Team> Teams { get; set; }
-    }
+    //    public DbSet<Team> Teams { get; set; }
+    //}
 
-    public class TeamInitializer : CreateDatabaseIfNotExists<TeamContext>
-    {
-        protected override void Seed(TeamContext context)
-        {
-            var teams = new List<Team>
-            {
-                new Team{Name="Adventure Works Cycles"},
-                new Team{Name="Alpine Ski House"},
-                new Team{Name="Blue Yonder Airlines"},
-                new Team{Name="Coho Vineyard"},
-                new Team{Name="Contoso, Ltd."},
-                new Team{Name="Fabrikam, Inc."},
-                new Team{Name="Lucerne Publishing"},
-                new Team{Name="Northwind Traders"},
-                new Team{Name="Consolidated Messenger"},
-                new Team{Name="Fourth Coffee"},
-                new Team{Name="Graphic Design Institute"},
-                new Team{Name="Nod Publishers"}
-            };
+    //public class TeamInitializer : CreateDatabaseIfNotExists<TeamContext>
+    //{
+    //    protected override void Seed(TeamContext context)
+    //    {
+    //        var teams = new List<Team>
+    //        {
+    //            new Team{Name="Adventure Works Cycles"},
+    //            new Team{Name="Alpine Ski House"},
+    //            new Team{Name="Blue Yonder Airlines"},
+    //            new Team{Name="Coho Vineyard"},
+    //            new Team{Name="Contoso, Ltd."},
+    //            new Team{Name="Fabrikam, Inc."},
+    //            new Team{Name="Lucerne Publishing"},
+    //            new Team{Name="Northwind Traders"},
+    //            new Team{Name="Consolidated Messenger"},
+    //            new Team{Name="Fourth Coffee"},
+    //            new Team{Name="Graphic Design Institute"},
+    //            new Team{Name="Nod Publishers"}
+    //        };
 
-            Team.PlayGames(teams);
+    //        Team.PlayGames(teams);
 
-            teams.ForEach(t => context.Teams.Add(t));
-            context.SaveChanges();
-        }
-    }
+    //        teams.ForEach(t => context.Teams.Add(t));
+    //        context.SaveChanges();
+    //    }
+    //}
 
-    public class TeamConfiguration : DbConfiguration
-    {
-        public TeamConfiguration()
-        {
-            SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy());
-        }
-    }
+    //public class TeamConfiguration : DbConfiguration
+    //{
+    //    public TeamConfiguration()
+    //    {
+    //        SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy());
+    //    }
+    //}
 }

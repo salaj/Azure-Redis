@@ -15,7 +15,7 @@ namespace ContosoTeamStats
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //TODO:uncomment
-            Database.SetInitializer<TeamContext>(new TeamInitializer());
+            //Database.SetInitializer<TeamContext>(new TeamInitializer());
         }
     }
 }
