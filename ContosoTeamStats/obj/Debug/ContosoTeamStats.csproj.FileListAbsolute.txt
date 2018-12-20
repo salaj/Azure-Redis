@@ -193,3 +193,7 @@ C:\Git\Azure\ContosoTeamStats\ContosoTeamStats\bin\System.Threading.Channels.xml
 C:\Git\Azure\ContosoTeamStats\ContosoTeamStats\bin\System.Threading.Tasks.Extensions.xml
 C:\Git\Azure\ContosoTeamStats\ContosoTeamStats\bin\StackExchange.Redis.dll
 C:\Git\Azure\ContosoTeamStats\ContosoTeamStats\bin\StackExchange.Redis.xml
+C:\Git\Azure\ContosoTeamStats\ContosoTeamStats\bin\EntityFramework.dll
+C:\Git\Azure\ContosoTeamStats\ContosoTeamStats\bin\EntityFramework.SqlServer.dll
+C:\Git\Azure\ContosoTeamStats\ContosoTeamStats\bin\EntityFramework.xml
+C:\Git\Azure\ContosoTeamStats\ContosoTeamStats\bin\EntityFramework.SqlServer.xml
