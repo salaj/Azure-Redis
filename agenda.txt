@@ -10,11 +10,12 @@ AGENDA:
 	c) Update HomeController - connection part
 	d) Run webapp.azcli (creates: appservice plan, webapp) (sets: deployment user, appsettings for redis)
 	e) Publish to Azure
-3. Modiy web app for redis backed application
+3. Modify web app for redis backed application
 	b) update Team class
 	c) update SQL Server Express LocalDB connection - Web.config
 	d) Run Team Initializer from Global.asax
-	f) update _Layout to add Teams tab
-	g) update the TeamsController to read from the cache or the database
+	f) Update _Layout to add Teams tab
+	g) Update the TeamsController to read from the cache or the database
 	h) Update the Create, Edit, and Delete methods to work with the cache
 	i) Update caching methods to the Teams Index view
+	j) Run locally, Run sqldb.azcli (creates: server, db) (sets: connection string)

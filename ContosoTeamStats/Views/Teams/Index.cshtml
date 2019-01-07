@@ -8,7 +8,8 @@
 
 <table class="table">
 	<tr>
-		<td>
+		@*TODO: UNCOMMENT*@
+		@*<td>
 			@Html.ActionLink("Create New", "Create")
 		</td>
 		<td>
@@ -31,7 +32,7 @@
 		</td>
 		<td>
 			@Html.ActionLink("Rebuild DB", "Index", new { actionType = "rebuildDB" })
-		</td>
+		</td>*@
 	</tr>
 </table>
 <table class="table">
@@ -67,9 +68,10 @@
 				@Html.DisplayFor(modelItem => item.Ties)
 			</td>
 			<td>
-				@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+				@*TODO: UNCOMMENT*@
+				@*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
 				@Html.ActionLink("Details", "Details", new { id = item.ID }) |
-				@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+				@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
 			</td>
 		</tr>
 	}
