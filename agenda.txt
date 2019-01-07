@@ -1,13 +1,14 @@
 AGENDA:
 
 1. Create Redis cache
-	a) Run azcli script
+	a) Run redis.azcli script
 2. Create web app running on this cache
 	a) Merge secrets to Web.config -  <appSettings file="C:\AppSecrets\CacheSecrets.config">
 	b) Configure the application to use StackExchange.Redis 
 		- Tools > NuGet Package Manager > Package Manager Console - 
 			Install-Package StackExchange.Redis
 	c) Update HomeController - connection part
+	d) Run webapp.azcli (creates: appservice plan, webapp) (sets: deployment user, appsettings for redis)
 	d) Publish to Azure
 		update credentials from webapp.azcli
 3. Modiy web app for redis backed application
