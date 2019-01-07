@@ -1,0 +1,19 @@
+#THIS SCRIPT ASSUMES redis.azcli has been run before
+
+$sqlServerResourceGroup="jksa-redis"
+$sqlServerName="sqlServerJksa"
+$sqlDBName="sqlDBJksa"
+$adminUser="jksa"
+$adminPass="Start123"
+$webAppSettingDBConnectionKey="TeamContext"
+
+az sql server create --name $sqlServerName --resource-group $sqlServerResourceGroup --location westeurope --admin-user $adminUser --admin-password $adminPass
+
+az sql db create --resource-group $sqlServerResourceGroup --server $sqlServerName --name $sqlDBName --service-objective Basic
+
+$accesSecret = az sql db show-connection-string --name $sqlDBName --server $sqlServerName --client ado.net --auth-type SqlPassword 
+
+$accesSecret = $accesSecret.Replace("<username>", $adminUser)
+$accesSecret = $accesSecret.Replace("<password>", $adminPass)
+
+az webapp config connection-string set --name $webAppName --resource-group $webResourceGroup --settings "$webAppSettingDBConnectionKey=$accesSecret" --connection-string-type SQLServer

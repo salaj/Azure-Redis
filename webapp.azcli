@@ -1,10 +1,20 @@
 #THIS SCRIPT ASSUMES redis.azcli has been run before
 
 $webAppName="MyRedisBasedApp"
+$webAppServicePlanName="webAppServicePlanJksa"
+$webResourceGroup="jksa-redis"
+$adminUser="jksa"
+$adminPass="Start123"
 
-$webResourceGroup=az webapp list --query "[?name=='$webAppName'].resourceGroup | [0]"
+az appservice plan create --name $webAppServicePlanName --resource-group $webResourceGroup --sku F1
 
-az webapp config appsettings list --name $webAppName --resource-group $webResourceGroup
+az webapp create --name $webAppName --resource-group $webResourceGroup --plan $webAppServicePlanName
+
+az webapp list --name $webAppName --resource-group $webResourceGroup
+
+az webapp deployment user set --user-name $adminUser --password $adminPass
+
+az webapp deployment user show
 
 az webapp config appsettings set --name $webAppName --resource-group $webResourceGroup `
 --settings  "$webAppSettingCacheConnectionKey=$accesSecret"
