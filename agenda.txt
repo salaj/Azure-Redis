@@ -19,3 +19,4 @@ AGENDA:
 	h) Update the Create, Edit, and Delete methods to work with the cache
 	i) Update caching methods to the Teams Index view
 	j) Run locally, Run sqldb.azcli (creates: server, db) (sets: connection string)
+	k) Set firewall rule for SQL db client
